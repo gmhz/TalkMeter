@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
     val rightRecyclerVisibility = MutableLiveData<Int>().apply {
         value = 0
     }
-
     val timerHanler = Handler()
+
     val updateTalkedSecondsRunner = object : Runnable {
         override fun run() {
             timerHanler.postDelayed(this, 1000)
@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
             }
         }
     }
+    val colors = ArrayList<Int>()
 
     override fun onPause() {
         super.onPause()
@@ -81,6 +82,17 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
 
         title = "PieChartActivity"
 
+        for (c in ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c)
+        for (c in ColorTemplate.JOYFUL_COLORS)
+            colors.add(c)
+        for (c in ColorTemplate.COLORFUL_COLORS)
+            colors.add(c)
+        for (c in ColorTemplate.LIBERTY_COLORS)
+            colors.add(c)
+        for (c in ColorTemplate.PASTEL_COLORS)
+            colors.add(c)
+        colors.add(ColorTemplate.getHoloBlue())
 
         val leftLayoutManager = LinearLayoutManager(this)
         val leftAdapter = UsersAdapter(this, 1)
@@ -123,11 +135,13 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
             it.userDao().loadLeftUsers().observe(this, Observer { list ->
                 //                Log.e("IGDSBGKHIKUEBVISBLVIUS", "loadLeftUsers updated: ${list}")
                 leftAdapter.submitList(list)
+                leftAdapter.notifyDataSetChanged()
             })
 
             it.userDao().loadRightUsers().observe(this, Observer { list ->
                 //                Log.e("IGDSBGKHIKUEBVISBLVIUS", "loadRightUsers updated: ${list}")
                 rightAdapter.submitList(list)
+                rightAdapter.notifyDataSetChanged()
             })
 
             it.userDao().loadTimedUsers().observe(this, Observer { list ->
@@ -149,8 +163,8 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
             chart.setTransparentCircleColor(Color.WHITE)
             chart.setTransparentCircleAlpha(110)
 
-            chart.holeRadius = 58f
-            chart.transparentCircleRadius = 61f
+            chart.holeRadius = 50f
+            chart.transparentCircleRadius = 40f
 
             chart.setDrawCenterText(true)
 
@@ -166,7 +180,7 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
             chart.setOnChartValueSelectedListener(this)
 
             chart.animateY(1400, Easing.EaseInOutQuad)
-            // chart.spin(2000, 0, 360);
+//            chart.spin(70000, 0f, 360f, Easing.Linear)
 
             val l = chart.legend
             l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
@@ -178,8 +192,9 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
             l.yOffset = 0f
 
             // entry label styling
-            chart.setEntryLabelColor(Color.WHITE)
-            chart.setEntryLabelTextSize(12f)
+            chart.setEntryLabelColor(Color.BLACK)
+            chart.setEntryLabelTypeface(Typeface.DEFAULT_BOLD)
+            chart.setEntryLabelTextSize(16f)
         }
     }
 
@@ -188,7 +203,7 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
-        for (user in usersWithTalkedTime) {
+        usersWithTalkedTime.forEachIndexed { i, user ->
             entries.add(
                 PieEntry(
                     user.spokeTime.toFloat(),
@@ -196,20 +211,6 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
                 )
             )
         }
-
-        // add a lot of colors
-        val colors = ArrayList<Int>()
-        for (c in ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c)
-        for (c in ColorTemplate.JOYFUL_COLORS)
-            colors.add(c)
-        for (c in ColorTemplate.COLORFUL_COLORS)
-            colors.add(c)
-        for (c in ColorTemplate.LIBERTY_COLORS)
-            colors.add(c)
-        for (c in ColorTemplate.PASTEL_COLORS)
-            colors.add(c)
-        colors.add(ColorTemplate.getHoloBlue())
 
         val dataSet = PieDataSet(entries, "Spoken Users")
 
@@ -224,8 +225,8 @@ class MainActivity : AppCompatActivity(), OnChartValueSelectedListener {
         binding.chart1?.let { chart ->
             val data = PieData(dataSet)
             data.setValueFormatter(PercentFormatter(chart))
-            data.setValueTextSize(11f)
-            data.setValueTextColor(Color.WHITE)
+            data.setValueTextSize(14f)
+            data.setValueTextColor(Color.BLACK)
             chart.data = data
 
             // undo all highlights

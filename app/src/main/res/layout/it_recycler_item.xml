@@ -24,17 +24,17 @@
         <TextView
             android:id="@+id/text"
             style="?android:textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="190dp"
+            android:layout_height="64dp"
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:ellipsize="end"
             android:focusable="true"
             android:gravity="center"
-            android:maxLines="1"
-            android:minWidth="185dp"
+            android:maxLines="2"
             android:onClick="@{clickListener}"
-            android:padding="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="@{user.nameTime()}"
             tools:text="Jake Wharton 01:01:31" />
     </FrameLayout>

@@ -11,6 +11,7 @@ data class User(
     @ColumnInfo(name = "spoke_time") var spokeTime: Int = 0,
     @ColumnInfo(name = "u_category") val uCategory: Int = 1,
     @ColumnInfo(name = "u_selected") var uSelected: Boolean = false
+//    @ColumnInfo(name = "color") var color: Int = 0xfff
 ) {
     fun nameTime(): String {
         return "$fullName: ${formatSeconds(spokeTime)}"

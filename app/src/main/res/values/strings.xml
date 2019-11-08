@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="dash">-</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">create</string>
+    <string name="create_new_user">Create new user</string>
+    <string name="operations_with_user_s">Operations with user %s</string>
+    <string name="delete">Delete</string>
+    <string name="reset">Reset</string>
+    <string name="delete_all">Delete all</string>
+</resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="#cecece">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/floatingLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_pink_cr10"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/floatingUserName"
+                    style="?android:textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jake Wharton" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/floatingUserTime"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_white_cr10"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:text="01:41" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/leftContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end">
+
+            <LinearLayout
+                android:id="@+id/leftRecyclerContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/leftRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_white_cr10"
+                    tools:listitem="@layout/it_recycler_item" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/leftSheetControlButton"
+                android:layout_width="24dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_white_cr10"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/rightContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/rightRecyclerContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="17dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rightRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_white_cr10"
+                    tools:listitem="@layout/it_recycler_item" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/rightSheetControlButton"
+                android:layout_width="24dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical|end"
+                android:background="@drawable/bg_white_cr10"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

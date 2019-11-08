@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="user"
+            type="com.talkmeter.db.User" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@{user.uSelected ? @drawable/selected_it_bg : @drawable/unselected_it_bg}"
+        tools:background="@drawable/unselected_it_bg">
+
+        <TextView
+            android:id="@+id/text"
+            style="?android:textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="185dp"
+            android:onClick="@{clickListener}"
+            android:padding="8dp"
+            android:text="@{user.nameTime()}"
+            tools:text="Jake Wharton 01:01:31" />
+    </FrameLayout>
+</layout>
